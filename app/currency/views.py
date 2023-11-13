@@ -25,7 +25,7 @@ def contactus_list(request):
 
     for con in contact:
         result.append(
-            f'ID: {con.id}, e-mail: {con.email_from}subject:{con.subject}, message:{con.message}'
+            f'ID: {con.id}, e-mail: {con.email_from}, subject:{con.subject}, message:{con.message}'
         )
 
     return HttpResponse(str(result))
