@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http.response import HttpResponse
 from currency.models import Rate
 from currency.models import ContactUs
@@ -29,6 +28,3 @@ def contactus_list(request):
         )
 
     return HttpResponse(str(result))
-
-
-
