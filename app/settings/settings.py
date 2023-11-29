@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -40,6 +43,7 @@ DJANGO_APPS = [
 ]
 EXTERNAL_APPS = [
     'django_extensions',
+    'debug_toolbar',
 ]
 INTERNAL_APPS = [
     'currency',
@@ -49,6 +53,7 @@ INTERNAL_APPS = [
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

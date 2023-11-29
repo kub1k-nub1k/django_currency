@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Currency{% endblock %}</title>
+    <title>Currency - {% block title %}{% endblock title %}</title>
 </head>
 <body>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+
+{% include 'includes/navbar.html' %}
+
+{% block content %}
+{% endblock content %}
+
 </body>
 </html>
