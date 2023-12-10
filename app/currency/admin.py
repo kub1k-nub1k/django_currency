@@ -1,5 +1,5 @@
 from django.contrib import admin
-from currency.models import Source, ContactUs
+from currency.models import Source, ContactUs, RequestResponseLog
 
 
 @admin.register(Source)
@@ -26,3 +26,12 @@ class ContactUsAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(RequestResponseLog)
+class RequestResponseLogAdmin(admin.ModelAdmin):
+    list_display = (
+        'path',
+        'request_method',
+        'time'
+    )
