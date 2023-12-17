@@ -1,3 +1,10 @@
+from django.contrib.auth import get_user_model, update_session_auth_hash
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
+
+
 from django.core.mail import send_mail
 from django.views.generic import (
     ListView, CreateView, UpdateView,
@@ -9,7 +16,7 @@ from currency.forms import RateForm, SourceForm, ContactUsForm
 from currency.models import Rate, Source, ContactUs
 
 
-class RateListView(ListView):
+class RateListView(LoginRequiredMixin, ListView):
     queryset = Rate.objects.all()
     template_name = 'rate_list.html'
 
@@ -128,3 +135,34 @@ class ContactUsDetailView(DetailView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    model = get_user_model()
+    template_name = 'profile.html'
+    success_url = reverse_lazy('index')
+    fields = (
+        'first_name',
+        'last_name'
+    )
+
+    def get_object(self, queryset=None):
+        qs = super().get_queryset()
+
+        return qs.get(id=self.request.user.id)
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+
+    return render(request, 'change_password.html', {'form': form})

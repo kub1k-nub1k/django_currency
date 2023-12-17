@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
 
-{%  block title %}
+{% block title %}
     Rates List
 {% endblock title %}
 
 {% block content %}
+    {% if user.is_superuser %}
+        <a href="{% url 'currency:rate-create' %}">Create</a><br>
+    {% endif %}
 
-    <a href="{% url 'currency:rate-create' %}">Create</a><br>
+    {% for rate in object_list %}
+        Id: {{ rate.id }}
+        Buy:{{ rate.buy }}
+        Sell: {{ rate.sell }}
 
-{% for rate in object_list %}
-  Id: {{ rate.id }}
-  Buy:{{ rate.buy }}
-  Sell: {{ rate.sell }}
-    <a href="{% url 'currency:rate-update' rate.id %}">Edit</a>
-    <a href="{% url 'currency:rate-delete' rate.id %}">Delete</a>
-    <a href="{% url 'currency:rate-details' rate.id %}">Details</a>
-    <br>
-{% endfor %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'currency:rate-details' rate.id %}">Details</a>
+        {% endif %}
 
+        {% if user.is_superuser %}
+            <a href="{% url 'currency:rate-update' rate.id %}">Edit</a>
+            <a href="{% url 'currency:rate-delete' rate.id %}">Delete</a>
+        {% endif %}
+
+        <br>
+    {% endfor %}
 {% endblock content %}
