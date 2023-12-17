@@ -49,6 +49,7 @@ EXTERNAL_APPS = [
 ]
 INTERNAL_APPS = [
     'currency',
+    'account',
 ]
 
 
@@ -118,6 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -142,17 +144,20 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'fordjangomails@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'fordjangomails@gmail.com'
-EMAIL_HOST_PASSWORD = 'vxljmenyewvpbwes'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# DEFAULT_FROM_EMAIL = 'fordjangomails@gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'fordjangomails@gmail.com'
+# EMAIL_HOST_PASSWORD = '****'
 
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
+
+HTTP_METHOD = 'http'
+DOMAIN = '0.0.0.0:8000'
