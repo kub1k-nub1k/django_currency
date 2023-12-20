@@ -5,8 +5,7 @@ from currency.models import Source, ContactUs, RequestResponseLog
 @admin.register(Source)
 class SourceAdmin(admin.ModelAdmin):
     list_display = (
-        'source_url',
-        'name'
+        'name',
     )
 
 
