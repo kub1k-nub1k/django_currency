@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model, update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
@@ -135,21 +135,6 @@ class ContactUsDetailView(DetailView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
-
-
-class ProfileView(LoginRequiredMixin, UpdateView):
-    model = get_user_model()
-    template_name = 'profile.html'
-    success_url = reverse_lazy('index')
-    fields = (
-        'first_name',
-        'last_name'
-    )
-
-    def get_object(self, queryset=None):
-        qs = super().get_queryset()
-
-        return qs.get(id=self.request.user.id)
 
 
 def change_password(request):
