@@ -1,5 +1,6 @@
 from django.db import models
 from currency.choices import CurrencyTypeChoices
+from django.utils.translation import gettext_lazy as _
 
 
 class Rate(models.Model):
@@ -10,7 +11,14 @@ class Rate(models.Model):
         choices=CurrencyTypeChoices.choices,
         default=CurrencyTypeChoices.USD
     )
-    source = models.CharField(max_length=255)
+    source = models.ForeignKey('currency.Source', on_delete=models.CASCADE, related_name='rates')
+
+    class Meta:
+        verbose_name = _('Rate')
+        verbose_name_plural = _('Rates')
+
+    def __str__(self):
+        return f'{self.buy} - {self.sell} - {self.source}'
 
 
 class ContactUs(models.Model):
@@ -20,8 +28,14 @@ class ContactUs(models.Model):
 
 
 class Source(models.Model):
-    source_url = models.CharField(max_length=255)
-    name = models.CharField(max_length=64)
+    name = models.CharField(_('Source'), max_length=64)
+
+    class Meta:
+        verbose_name = _('Source')
+        verbose_name_plural = _('Sources')
+
+    def __str__(self):
+        return self.name
 
 
 class RequestResponseLog(models.Model):

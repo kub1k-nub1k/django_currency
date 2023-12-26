@@ -10,7 +10,6 @@
 
 {% for source in object_list %}
   name: {{ source.name }}
-  URL:{{ source.source_url }}
     <a href="{% url 'currency:source-update' source.id %}">Edit</a>
     <a href="{% url 'currency:source-delete' source.id %}">Delete</a>
     <a href="{% url 'currency:source-details' source.id %}">Details</a>
