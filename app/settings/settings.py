@@ -168,4 +168,3 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 HTTP_METHOD = 'http'
 DOMAIN = '0.0.0.0:8000'
-
