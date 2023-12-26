@@ -46,6 +46,8 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     'django_extensions',
     'debug_toolbar',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 INTERNAL_APPS = [
     'currency',
@@ -68,6 +70,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'settings.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -138,6 +142,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -161,3 +168,4 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 HTTP_METHOD = 'http'
 DOMAIN = '0.0.0.0:8000'
+

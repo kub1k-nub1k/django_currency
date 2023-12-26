@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}Profile{% endblock %}
 
 {% block content %}
     <h1>Profile</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+    {% if user.avatar %}
+        <p><img style="height: 200px; width: 200px" src="{{ user.avatar.url }}" alt="Avatar"></p>
+    {% else %}
+        <p>No logo available</p>
+    {% endif %}
 
-        <button type="submit">Update</button>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button type="submit" class="btn btn-secondary">Update</button>
     </form>
 
     <a href="{% url 'change_password' %}">Change Password</a>
