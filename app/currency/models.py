@@ -30,6 +30,7 @@ class ContactUs(models.Model):
 class Source(models.Model):
     name = models.CharField(_('Source'), max_length=64)
     logo_source = models.FileField(_('logo'), default=None, null=True, blank=True, upload_to='logo/')
+    code_name = models.CharField(_('Code name'), max_length=64, unique=True)
 
     class Meta:
         verbose_name = _('Source')
