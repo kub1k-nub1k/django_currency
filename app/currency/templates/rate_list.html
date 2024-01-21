@@ -5,6 +5,14 @@
 {% endblock title %}
 
 {% block content %}
+<div class="row">
+    <div class="col-12">
+        <form method="get" class="form-inline mb-2">
+            {{ filter.form.as_p }}
+            <button type="submit" class="btn btn-primary">Применить фильтр</button>
+        </form>
+    </div>
+</div>
     {% if user.is_authenticated %}
         <a href="{% url 'currency:rate-create' %}">Create</a><br>
     {% endif %}
@@ -21,7 +29,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for rate in object_list %}
+            {% for rate in page_obj %}
                 <tr>
                     <th scope="row">{{ rate.id }}</th>
                     <td>{{ rate.buy }}</td>
@@ -52,4 +60,9 @@
         </table>
     </div>
 
+    <div class="row">
+        <div class="col-12">
+            {% include 'includes/pagination.html' %}
+        </div>
+    </div>
 {% endblock content %}

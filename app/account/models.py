@@ -10,6 +10,7 @@ from account.managers import UserManager
 class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     avatar = models.FileField(_('Avatar'), default=None, null=True, blank=True, upload_to='avatar/')
+    phone_number = models.CharField(_('phone number'), max_length=15, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

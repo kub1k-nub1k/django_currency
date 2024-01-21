@@ -1,7 +1,7 @@
 manage_py := python ./app/manage.py
 
 run:
-	$(manage_py) runserver 0.0.0.0:8000
+	$(manage_py) runserver 0.0.0.0:8001
 
 makemigrations:
 	$(manage_py) makemigrations

@@ -3,7 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-
+from currency.filters import RateFilter
+from django_filters.views import FilterView
+import re
 
 from django.core.mail import send_mail
 from django.views.generic import (
@@ -16,9 +18,20 @@ from currency.forms import RateForm, SourceForm, ContactUsForm
 from currency.models import Rate, Source, ContactUs
 
 
-class RateListView(LoginRequiredMixin, ListView):
+class RateListView(LoginRequiredMixin, FilterView):
     queryset = Rate.objects.all().select_related('source')
     template_name = 'rate_list.html'
+    paginate_by = 10
+    filterset_class = RateFilter
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+
+        query_parameters = self.request.GET.urlencode()
+
+        context['filter_params'] = re.sub(r'page=\d+', '', query_parameters).lstrip('&')
+
+        return context
 
 
 class RateCreateView(CreateView):
