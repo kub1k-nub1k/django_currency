@@ -38,3 +38,5 @@ wcwidth==0.2.9
 Celery
 requests
 django-filter
+djangorestframework
+djangorestframework-simplejwt
