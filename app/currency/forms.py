@@ -9,6 +9,7 @@ class SourceForm(forms.ModelForm):
         model = Source
         fields = (
             'name',
+            'code_name',
             'logo_source',
         )
 

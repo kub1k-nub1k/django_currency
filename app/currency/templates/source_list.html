@@ -9,6 +9,7 @@
     <a href="{% url 'currency:source-create' %}">Create</a><br>
 
 {% for source in object_list %}
+  id: {{ source.id }}
   name: {{ source.name }}
     <a href="{% url 'currency:source-update' source.id %}">Edit</a>
     <a href="{% url 'currency:source-delete' source.id %}">Delete</a>

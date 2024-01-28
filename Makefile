@@ -1,7 +1,7 @@
 manage_py := python ./app/manage.py
 
 run:
-	$(manage_py) runserver 0.0.0.0:8003
+	$(manage_py) runserver 0.0.0.0:8000
 
 makemigrations:
 	$(manage_py) makemigrations
@@ -23,3 +23,6 @@ worker:
 
 beat:
 	cd app && celery -A settings beat -l info
+
+pytest:
+	pytest app/tests --cov=app --cov-report html
