@@ -23,7 +23,10 @@ class SourceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Source
-        fields = ['name']
+        fields = (
+            'name',
+            'code_name',
+        )
 
 
 class ContactUsSerializer(serializers.ModelSerializer):

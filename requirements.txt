@@ -40,3 +40,7 @@ requests
 django-filter
 djangorestframework
 djangorestframework-simplejwt
+pytest
+pytest-django
+pytest-cov
+pytest-mock
