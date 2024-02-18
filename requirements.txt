@@ -44,3 +44,7 @@ pytest
 pytest-django
 pytest-cov
 pytest-mock
+pymemcache
+gunicorn
+django-environ
+psycopg2-binary
