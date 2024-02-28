@@ -44,7 +44,7 @@ def parse_privatbank():
 
 
 @shared_task
-def parse_monobank():
+def parse_monobank_task():
     url = 'https://api.monobank.ua/bank/currency'
     response = requests.get(url)
     response.raise_for_status()
